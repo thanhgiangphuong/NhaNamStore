@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static Case__Study.Book.comma;
-
 public class ChildrenToy extends Product {
     // Create properties
     private String dcXuatXu;
@@ -13,11 +11,17 @@ public class ChildrenToy extends Product {
     private String dcNhaCungCap;
     private String dcHuongDanSuDung;
 
+    List<ChildrenToy> listChildrenToy = new ArrayList<ChildrenToy>();
+    Scanner scannerToy = new Scanner(System.in);
+    FileUtils fileUtils = new FileUtils();
+    public static final String comma = ",";
+
     // No-arg Constructor
     public ChildrenToy() {
     }
+
     // Parameterized Constructor
-    public ChildrenToy(String maSanPham, String tenSanPham, int soLuong, double donGia,String thuocDanhMuc,
+    public ChildrenToy(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc,
                        String dcXuatXu, String dcThuongHieu, String dcNhaCungCap, String dcHuongDanSuDung) {
         super(maSanPham, tenSanPham, soLuong, donGia, thuocDanhMuc);
         this.dcXuatXu = dcXuatXu;
@@ -26,109 +30,59 @@ public class ChildrenToy extends Product {
         this.dcHuongDanSuDung = dcHuongDanSuDung;
     }
 
-    // Setter - Getter
-    public String getDcXuatXu() {
-        return dcXuatXu;
+    public void inputChildrenToy() {
+        inputProduct();
+        System.out.println("Xuất xứ: ");
+        dcXuatXu = scannerToy.nextLine();
+        System.out.println("Thương hiệu: ");
+        dcThuongHieu = scannerToy.nextLine();
+        System.out.println("Nhà cung cấp: ");
+        dcNhaCungCap = scannerToy.nextLine();
+        System.out.println("Hướng dẫn sử dụng: ");
+        dcHuongDanSuDung = scannerToy.nextLine();
+
+        ChildrenToy childrenToy = new ChildrenToy (getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(),
+                getThuocDanhMuc(), getDcXuatXu(), getDcThuongHieu(), getDcNhaCungCap(), getDcHuongDanSuDung());
+        listChildrenToy.add(childrenToy);
     }
 
-    public void setDcXuatXu(String dcXuatXu) {
-        this.dcXuatXu = dcXuatXu;
-    }
+    // Create addBook method to add information of book to file
+    public void addChildrentoy() {
+        System.out.println("Thêm thông tin vào file đồ chơi trẻ em");
 
-    public String getDcThuongHieu() {
-        return dcThuongHieu;
-    }
-
-    public void setDcThuongHieu(String dcThuongHieu) {
-        this.dcThuongHieu = dcThuongHieu;
-    }
-
-    public String getDcNhaCungCap() {
-        return dcNhaCungCap;
-    }
-
-    public void setDcNhaCungCap(String dcNhaCungCap) {
-        this.dcNhaCungCap = dcNhaCungCap;
-    }
-
-    public String getDcHuongDanSuDung() {
-        return dcHuongDanSuDung;
-    }
-
-    public void setDcHuongDanSuDung(String dcHuongDanSuDung) {
-        this.dcHuongDanSuDung = dcHuongDanSuDung;
+        String line = null;
+        for (ChildrenToy childrenToy : listChildrenToy) {
+            line = childrenToy.getMaSanPham() + comma + childrenToy.getTenSanPham() + comma + childrenToy.getSoLuong()
+                    + comma + getDonGia() + comma + getThuocDanhMuc() + comma + childrenToy.getDcXuatXu()
+                    + comma + childrenToy.getDcThuongHieu() + comma + childrenToy.getDcNhaCungCap()
+                    + comma + childrenToy.getDcHuongDanSuDung();
+            fileUtils.FileWriting("ChildrenToy.csv", line);
+        }
     }
 
     @Override
     public void HienThiThongTin() {
-
+        System.out.println(fileUtils.FileReader("ChildrenToy.csv"));
     }
 
     @Override
     public void PhanTramGiamGia() {
 
     }
-    List<ChildrenToy> ChildrenToylist = new ArrayList<>();
-        // Create WritetoChildrenToyfile method
-        public void WritetoChildrenToyfile(){
-        String lineChildrenToy = null;
-        for(ChildrenToy childrenToy : ChildrenToylist){
-            lineChildrenToy = childrenToy.getMaSanPham() + comma + childrenToy.getTenSanPham()
-                    + comma + childrenToy.getSoLuong() + comma + childrenToy.getDonGia()
-                    + comma + childrenToy.getDcXuatXu() + comma + childrenToy.getDcThuongHieu()
-                    + comma + childrenToy.getDcNhaCungCap() + comma + childrenToy.getDcHuongDanSuDung();
-            FileUtils.FileWriting("ChildrenToy.csv", lineChildrenToy);
-        }
+    // Getter
+    public String getDcXuatXu() {
+        return dcXuatXu;
     }
-    // Create addChildrenToy method
-    public void addChildrenToy(ChildrenToy childrenToy) {
-        this.ChildrenToylist.add(childrenToy);
+
+    public String getDcThuongHieu() {
+        return dcThuongHieu;
     }
-    // Enter data for Children Toy
-    public static void enterChildrenToy (){
-        Scanner scannertoy = new Scanner(System.in);
-        System.out.println("Nhập mã đồ chơi: ");
-        String toyID = scannertoy.nextLine();
-        System.out.println("Nhập tên đồ chơi: ");
-        String toyName = scannertoy.nextLine();
-        // Validate toy quantity
-        int toyQuantity;
-        do {
-            System.out.println("Số lượng đồ chơi (Vui lòng điền số nguyên dương): ");
-            while (!scannertoy.hasNextInt()) {
-                System.out.println("Vui lòng nhập số nguyên dương");
-                scannertoy.next();
-            }
-            toyQuantity = scannertoy.nextInt();
-            scannertoy.nextLine();
-        } while (toyQuantity <= 0);
-        // Validate Toy Price
-        double toyPrice;
-        do {
-            System.out.println("Đơn giá đồ chơi (Vui lòng điền số thực và lớn hơn 0): ");
-            while (!scannertoy.hasNextDouble()) {
-                System.out.println("Vui lòng nhập số thực");
-                scannertoy.next();
-            }
-            toyPrice = scannertoy.nextDouble();
-            scannertoy.nextLine();
-        } while (toyPrice <= 0);
 
-        System.out.println("Thuộc danh mục: ");
-        String toyCategory = scannertoy.nextLine();
-        System.out.println("Xuất xứ: ");
-        String toyOrigin = scannertoy.nextLine();
-        System.out.println("Thương hiệu: ");
-        String toyBranch = scannertoy.nextLine();
-        System.out.println("Nhà cung cấp: ");
-        String toyProvider = scannertoy.nextLine();
-        System.out.println("Hướng dẫn sử dụng: ");
-        String toyUsingGuide = scannertoy.nextLine();
+    public String getDcNhaCungCap() {
+        return dcNhaCungCap;
+    }
 
-        Product toy = new ChildrenToy(toyID, toyName, toyQuantity, toyPrice, toyCategory,
-                toyOrigin, toyBranch, toyProvider, toyUsingGuide);
-        MainmenuControll mainmenuControll = new MainmenuControll();
-        mainmenuControll.addDToys(toy);
-        FileUtils.FileWriting("ChildrenToy.csv", toy.toString());
+    public String getDcHuongDanSuDung() {
+        return dcHuongDanSuDung;
     }
 }

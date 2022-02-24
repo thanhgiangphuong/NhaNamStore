@@ -1,5 +1,9 @@
 package Case__Study;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public abstract class Product {
     // Create properties
     private String MaSanPham;
@@ -7,6 +11,9 @@ public abstract class Product {
     private int SoLuong;
     private double DonGia;
     private String ThuocDanhMuc;
+
+    Scanner scannerPr = new Scanner(System.in);
+    FileUtils fileUtils = new FileUtils();
 
     // No-arg Constructor
     public Product() {
@@ -20,49 +27,76 @@ public abstract class Product {
         DonGia = donGia;
         ThuocDanhMuc = thuocDanhMuc;
     }
+    // Create input information of product method
+    public void inputProduct(){
+        System.out.println("Nhập mã sản phẩm: ");
+        MaSanPham = scannerPr.nextLine();
+        System.out.println("Nhập tên sản phẩm: ");
+        TenSanPham = scannerPr.nextLine();
 
-    // Setter - Getter
-    public String getMaSanPham() {
-        return MaSanPham;
+        // Validate "Số lượng"
+       // int slSP;
+        do {
+            System.out.println("Số lượng sản phẩm (Vui lòng điền số nguyên dương): ");
+            while (!scannerPr.hasNextInt()) {
+                System.out.println("Vui lòng nhập số nguyên dương");
+                scannerPr.next();
+            }
+            SoLuong = scannerPr.nextInt();
+            scannerPr.nextLine();
+        } while (SoLuong <= 0);
+
+        // Validate "Đơn giá"
+        do {
+            System.out.println("Đơn giá sách (Vui lòng điền số thực và lớn hơn 0): ");
+            while (!scannerPr.hasNextDouble()) {
+                System.out.println("Vui lòng nhập số thực");
+                scannerPr.next();
+            }
+            DonGia = scannerPr.nextDouble();
+            scannerPr.nextLine();
+        } while (DonGia <= 0);
+
+        System.out.println("Thuộc danh mục: ");
+        String ThuocDanhMuc = scannerPr.nextLine();
+
     }
 
-    public void setMaSanPham(String maSanPham) {
-        MaSanPham = maSanPham;
+    // Create abstract methods
+    public abstract void HienThiThongTin();
+    public abstract void PhanTramGiamGia();
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "MaSanPham='" + MaSanPham + '\'' +
+                ", TenSanPham='" + TenSanPham + '\'' +
+                ", SoLuong=" + SoLuong +
+                ", DonGia=" + DonGia +
+                ", ThuocDanhMuc='" + ThuocDanhMuc + '\'' +
+                '}';
+    }
+    // Getter
+    public String getMaSanPham() {
+        return MaSanPham;
     }
 
     public String getTenSanPham() {
         return TenSanPham;
     }
 
-    public void setTenSanPham(String tenSanPham) {
-        TenSanPham = tenSanPham;
-    }
-
     public int getSoLuong() {
         return SoLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        SoLuong = soLuong;
     }
 
     public double getDonGia() {
         return DonGia;
     }
 
-    public void setDonGia(double donGia) {
-        DonGia = donGia;
-    }
-
     public String getThuocDanhMuc() {
         return ThuocDanhMuc;
     }
 
-    public void setThuocDanhMuc(String thuocDanhMuc) {
-        ThuocDanhMuc = thuocDanhMuc;
-    }
 
-    // Create abstract methods
-    public abstract void HienThiThongTin();
-    public abstract void PhanTramGiamGia();
 }

@@ -87,8 +87,6 @@ public class Customer {
     }
 
 
-
-
     public void HienThiThongTinKhachHang(){
 
     }

@@ -1,9 +1,8 @@
 package Case__Study;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,8 +11,13 @@ public class Book extends Product {
     private String NhaXuatBan;
     private int NamXuatBan;
     private String TacGia;
-    private Date NgayXuatBan;
+    private String NgayXuatBan;
     private int LanTaiBan;
+
+    List<Book> listBook = new ArrayList<Book>();
+    Scanner scannerBook = new Scanner(System.in);
+    FileUtils fileUtils = new FileUtils();
+    public static final String comma = ",";
 
     // No-arg Constructor
     public Book() {
@@ -21,7 +25,7 @@ public class Book extends Product {
 
     // Parameterized Constructor
     public Book(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc,
-                String nhaXuatBan, int namXuatBan, String tacGia, Date ngayXuatBan, int lanTaiBan) {
+                String nhaXuatBan, int namXuatBan, String tacGia, String ngayXuatBan, int lanTaiBan) {
         super(maSanPham, tenSanPham, soLuong, donGia, thuocDanhMuc);
         NhaXuatBan = nhaXuatBan;
         NamXuatBan = namXuatBan;
@@ -30,50 +34,73 @@ public class Book extends Product {
         LanTaiBan = lanTaiBan;
     }
 
-    // Setter - Getter
-    public String getNhaXuatBan() {
-        return NhaXuatBan;
+    public void inputBook() {
+        inputProduct();
+        System.out.println("Nhà xuất bản: ");
+        NhaXuatBan = scannerBook.nextLine();
+
+        //  Validate "Năm xuất bản"
+        do {
+            System.out.println("Năm xuất bản (Vui lòng điền số nằm trong khoảng 1000 -> 2021): ");
+            while (!scannerBook.hasNextInt()) {
+                System.out.println("Vui lòng nhập số");
+                scannerBook.next();
+            }
+            NamXuatBan = scannerBook.nextInt();
+            scannerBook.nextLine();
+        } while (NamXuatBan < 1000 || NamXuatBan > 2021);
+
+        System.out.println("Tác giả: ");
+        TacGia = scannerBook.nextLine();
+
+        //  Validate for Ngày Xuất Bản
+        NgayXuatBan = null;
+        boolean valid;
+        do {
+            valid = true;
+            try {
+                System.out.println("Nhập ngày xuất bản theo định dạng dd/MM/yyyy");
+                String startDateString = scannerBook.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                NgayXuatBan = LocalDate.parse(startDateString, formatter).format(formatter2);
+            } catch (Exception e) {
+                System.out.println("Không hợp lệ!");
+                valid = false;
+            }
+        } while (!valid);
+
+        // Validate Lần tái bản
+        do {
+            System.out.println("Lần tái bản (Vui lòng điền số nguyên dương): ");
+            while (!scannerBook.hasNextInt()) {
+                System.out.println("Vui lòng nhập số");
+                scannerBook.next();
+            }
+            LanTaiBan = scannerBook.nextInt();
+        } while (LanTaiBan <= 0);
+        Book book = new Book(getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(), getThuocDanhMuc(),
+                getNhaXuatBan(), getNamXuatBan(), getTacGia(), getNgayXuatBan(), getLanTaiBan());
+        listBook.add(book);
     }
 
-    public void setNhaXuatBan(String nhaXuatBan) {
-        NhaXuatBan = nhaXuatBan;
-    }
+    // Create addBook method to add information of book to file
+    public void addBook() {
+        System.out.println("Thêm thông tin vào file sách");
 
-    public int getNamXuatBan() {
-        return NamXuatBan;
-    }
-
-    public void setNamXuatBan(int namXuatBan) {
-        NamXuatBan = namXuatBan;
-    }
-
-    public String getTacGia() {
-        return TacGia;
-    }
-
-    public void setTacGia(String tacGia) {
-        TacGia = tacGia;
-    }
-
-    public Date getNgayXuatBan() {
-        return NgayXuatBan;
-    }
-
-    public void setNgayXuatBan(Date ngayXuatBan) {
-        NgayXuatBan = ngayXuatBan;
-    }
-
-    public int getLanTaiBan() {
-        return LanTaiBan;
-    }
-
-    public void setLanTaiBan(int lanTaiBan) {
-        LanTaiBan = lanTaiBan;
+        String line = null;
+        for (Book book : listBook) {
+            line = book.getMaSanPham() + comma + book.getTenSanPham() + comma + book.getSoLuong()
+                    + comma + book.getDonGia() + comma + book.getThuocDanhMuc() + comma + book.getNhaXuatBan()
+                    + comma + book.getNamXuatBan() + comma + book.getTacGia() + comma + book.getNgayXuatBan()
+                    + comma + book.getLanTaiBan();
+            fileUtils.FileWriting("Book.csv", line);
+        }
     }
 
     @Override
     public void HienThiThongTin() {
-
+        System.out.println(fileUtils.FileReader("Book.csv"));
     }
 
     @Override
@@ -81,105 +108,32 @@ public class Book extends Product {
 
     }
 
-    public static final String comma = ",";
-    List<Book> Booklist = new ArrayList<>();
-
-    // Create WritetoBookfile method
-    public void WritetoBookfile() {
-        String lineBook = null;
-        for (Book book : Booklist) {
-            lineBook = book.getMaSanPham() + comma + book.getTenSanPham() + comma + book.getSoLuong() + comma
-                    + book.getDonGia() + comma + book.getNhaXuatBan() + comma + book.getNamXuatBan() + comma
-                    + book.getTacGia() + comma + book.getNgayXuatBan() + comma + book.getLanTaiBan();
-            FileUtils.FileWriting("Book.csv", lineBook);
-        }
+    // Getter
+    public String getNhaXuatBan() {
+        return NhaXuatBan;
     }
 
+    public int getNamXuatBan() {
+        return NamXuatBan;
+    }
 
-    // Enter data for Book
-    public static void Enterbook() {
-        Scanner scannerbook = new Scanner(System.in);
-        System.out.println("Nhập mã sách: ");
-        String bookID = scannerbook.nextLine();
-        System.out.println("Nhập tên sách: ");
-        String bookName = scannerbook.nextLine();
+    public String getTacGia() {
+        return TacGia;
+    }
 
-        // Validate book's quantity
-        int bookQuantity;
-        do {
-            System.out.println("Số lượng sách (Vui lòng điền số nguyên dương): ");
-            while (!scannerbook.hasNextInt()) {
-                System.out.println("Vui lòng nhập số nguyên dương");
-                scannerbook.next();
-            }
-            bookQuantity = scannerbook.nextInt();
-            scannerbook.nextLine();
-        } while (bookQuantity <= 0);
+    public String getNgayXuatBan() {
+        return NgayXuatBan;
+    }
 
-        // Validate Book price
-        double bookPrice;
-        do {
-            System.out.println("Đơn giá sách (Vui lòng điền số thực và lớn hơn 0): ");
-            while (!scannerbook.hasNextDouble()) {
-                System.out.println("Vui lòng nhập số thực");
-                scannerbook.next();
-            }
-            bookPrice = scannerbook.nextDouble();
-            scannerbook.nextLine();
-        } while (bookPrice <= 0);
+    public int getLanTaiBan() {
+        return LanTaiBan;
+    }
 
-        System.out.println("Thuộc danh mục: ");
-        String bookCategory = scannerbook.nextLine();
-        System.out.println("Nhà xuất bản: ");
-        String publishingCompany = scannerbook.nextLine();
+    public List<Book> getListBook() {
+        return listBook;
+    }
 
-        //  Validate Publishing Year
-        int publishingYear;
-        do {
-            System.out.println("Năm xuất bản (Vui lòng điền số nằm trong khoảng 1000 -> 2021): ");
-            while (!scannerbook.hasNextInt()) {
-                System.out.println("Vui lòng nhập số");
-                scannerbook.next();
-            }
-            publishingYear = scannerbook.nextInt();
-            scannerbook.nextLine();
-        } while (publishingYear < 1000 || publishingYear > 2021);
-
-        System.out.println("Tác giả: ");
-        String bookAuthor = scannerbook.nextLine();
-
-        //  Validate for Publishing Date
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println(sdf);
-        sdf.setLenient(false);
-        Date publishingDate = null;
-        boolean valid;
-        do {
-            valid = true;
-            try {
-                System.out.println("Nhập ngày xuất bản theo định dạng dd/MM/yyyy");
-                publishingDate = sdf.parse(scannerbook.nextLine());
-            } catch (ParseException e) {
-                System.out.println("Không hợp lệ!");
-                valid = false;
-            }
-        } while (!valid);
-
-        // Validate Reprint Time
-        int reprintTime;
-        do {
-            System.out.println("Lần tái bản (Vui lòng điền số nguyên dương): ");
-            while (!scannerbook.hasNextInt()) {
-                System.out.println("Vui lòng nhập số");
-                scannerbook.next();
-            }
-            reprintTime = scannerbook.nextInt();
-        } while (reprintTime <= 0);
-
-        Product book = new Book(bookID, bookName, bookQuantity, bookPrice, bookCategory, publishingCompany,
-                publishingYear, bookAuthor, publishingDate, reprintTime);
-        MainmenuControll mainmenuControll = new MainmenuControll();
-        mainmenuControll.addBooks(book);
-        FileUtils.FileWriting("Book.csv", book.toString());
+    public Scanner getScannerBook() {
+        return scannerBook;
     }
 }

@@ -1,12 +1,14 @@
 package Case__Study;
 
-import java.util.List;
 import java.util.Scanner;
-
-import static Case__Study.FileUtils.FileCreating;
 
 public class MainClass {
     public static void main(String[] args) {
+        Book book = new Book();
+        SchoolThings schoolThings = new SchoolThings();
+        ChildrenToy childrenToy = new ChildrenToy();
+        Scanner scanner = new Scanner(System.in);
+
         // Task 3 - Create Files csv
 //        FileCreating("Book.csv");
 //        FileCreating("SchoolThings.csv");
@@ -15,9 +17,6 @@ public class MainClass {
 //        FileCreating("Order.csv");
 
         // Task 2
-        Scanner scanner = new Scanner(System.in);
-        MainmenuControll mainmenuControll = new MainmenuControll();
-
         // Set main menu
         while (true) {
             System.out.println("Application Manager Book Store");
@@ -37,15 +36,19 @@ public class MainClass {
                     String type = scanner.nextLine();
                     switch (type) {
                         case "a": {
-                            Book.Enterbook();
+                            book.inputBook();
+                            book.addBook();
+
                             break;
                         }
                         case "b": {
-                            SchoolThings.EnterSchoolThings();
+                            schoolThings.inputSchoolThings();
+                            schoolThings.addSchoolThings();
                             break;
                         }
                         case "c": {
-                            ChildrenToy.enterChildrenToy();
+                            childrenToy.inputChildrenToy();
+                            childrenToy.addChildrentoy();
                             break;
                         }
                         default:
@@ -61,15 +64,13 @@ public class MainClass {
                     String type1 = scanner.nextLine();
                     switch (type1) {
                         case "a1": {
-                            mainmenuControll.showListBook();
+                            book.HienThiThongTin();
                             break;
                         }
                         case "b1": {
-                            mainmenuControll.showListThings();
                             break;
                         }
                         case "c1": {
-                            mainmenuControll.showListToy();
                             break;
                         }
                         default:
@@ -81,15 +82,7 @@ public class MainClass {
                 case "3": {
                     System.out.println("Nhập Mã sản phẩm để tìm kiếm: ");
                     String prdID = scanner.nextLine();
-                    System.out.println("call Main search");
-                    List<Product> products = mainmenuControll.searchProductbyID(prdID);
 
-//                    for(Product ProductbyID: product) {
-//                        System.out.println(product.toString());
-//                    }
-//                    mainmenuControll.searchProductbyID(prdID).forEach(product -> {
-//                        System.out.println(product.toString());
-//                    });
                     break;
                 }
                 case "4": {
