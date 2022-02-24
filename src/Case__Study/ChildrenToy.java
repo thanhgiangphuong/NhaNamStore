@@ -48,8 +48,6 @@ public class ChildrenToy extends Product {
 
     // Create addBook method to add information of book to file
     public void addChildrentoy() {
-        System.out.println("Thêm thông tin vào file đồ chơi trẻ em");
-
         String line = null;
         for (ChildrenToy childrenToy : listChildrenToy) {
             line = childrenToy.getMaSanPham() + comma + childrenToy.getTenSanPham() + comma + childrenToy.getSoLuong()

@@ -97,8 +97,6 @@ public class SchoolThings extends Product {
     }
     // Create addBook method to add information of book to file
     public void addSchoolThings() {
-        System.out.println("Thêm thông tin vào file đồ dùng học tập");
-
         String line = null;
         for (SchoolThings schoolThings : listSchoolThings) {
             line = schoolThings.getMaSanPham() + comma + schoolThings.getTenSanPham()

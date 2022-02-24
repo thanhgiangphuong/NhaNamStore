@@ -35,7 +35,6 @@ public abstract class Product {
         TenSanPham = scannerPr.nextLine();
 
         // Validate "Số lượng"
-       // int slSP;
         do {
             System.out.println("Số lượng sản phẩm (Vui lòng điền số nguyên dương): ");
             while (!scannerPr.hasNextInt()) {
@@ -66,17 +65,6 @@ public abstract class Product {
     public abstract void HienThiThongTin();
     public abstract void PhanTramGiamGia();
 
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "MaSanPham='" + MaSanPham + '\'' +
-                ", TenSanPham='" + TenSanPham + '\'' +
-                ", SoLuong=" + SoLuong +
-                ", DonGia=" + DonGia +
-                ", ThuocDanhMuc='" + ThuocDanhMuc + '\'' +
-                '}';
-    }
     // Getter
     public String getMaSanPham() {
         return MaSanPham;

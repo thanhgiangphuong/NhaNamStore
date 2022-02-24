@@ -1,5 +1,6 @@
 package Case__Study;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Book extends Product {
 
     // No-arg Constructor
     public Book() {
+
     }
 
     // Parameterized Constructor
@@ -86,8 +88,6 @@ public class Book extends Product {
 
     // Create addBook method to add information of book to file
     public void addBook() {
-        System.out.println("Thêm thông tin vào file sách");
-
         String line = null;
         for (Book book : listBook) {
             line = book.getMaSanPham() + comma + book.getTenSanPham() + comma + book.getSoLuong()
@@ -136,4 +136,5 @@ public class Book extends Product {
     public Scanner getScannerBook() {
         return scannerBook;
     }
+
 }

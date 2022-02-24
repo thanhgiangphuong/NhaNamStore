@@ -8,6 +8,7 @@ public class MainClass {
         SchoolThings schoolThings = new SchoolThings();
         ChildrenToy childrenToy = new ChildrenToy();
         Scanner scanner = new Scanner(System.in);
+        MainmenuControll mainmenuControll = new MainmenuControll();
 
         // Task 3 - Create Files csv
 //        FileCreating("Book.csv");
@@ -68,9 +69,11 @@ public class MainClass {
                             break;
                         }
                         case "b1": {
+                            schoolThings.HienThiThongTin();
                             break;
                         }
                         case "c1": {
+                            childrenToy.HienThiThongTin();
                             break;
                         }
                         default:
@@ -82,6 +85,7 @@ public class MainClass {
                 case "3": {
                     System.out.println("Nhập Mã sản phẩm để tìm kiếm: ");
                     String prdID = scanner.nextLine();
+                    mainmenuControll.SearchProduct(prdID);
 
                     break;
                 }
