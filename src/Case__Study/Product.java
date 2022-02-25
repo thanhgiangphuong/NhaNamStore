@@ -1,7 +1,5 @@
 package Case__Study;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public abstract class Product {
@@ -27,8 +25,9 @@ public abstract class Product {
         DonGia = donGia;
         ThuocDanhMuc = thuocDanhMuc;
     }
+
     // Create input information of product method
-    public void inputProduct(){
+    public void inputProduct() {
         System.out.println("Nhập mã sản phẩm: ");
         MaSanPham = scannerPr.nextLine();
         System.out.println("Nhập tên sản phẩm: ");
@@ -46,23 +45,26 @@ public abstract class Product {
         } while (SoLuong <= 0);
 
         // Validate "Đơn giá"
-        do {
-            System.out.println("Đơn giá sách (Vui lòng điền số thực và lớn hơn 0): ");
-            while (!scannerPr.hasNextDouble()) {
-                System.out.println("Vui lòng nhập số thực");
-                scannerPr.next();
-            }
-            DonGia = scannerPr.nextDouble();
-            scannerPr.nextLine();
-        } while (DonGia <= 0);
+       // try {
+            do {
+                System.out.println("Đơn giá (Vui lòng điền số lớn hơn 10000 và nhỏ hơn 20000000): ");
+                while (!scannerPr.hasNextDouble()) {
+                    System.out.println("Vui lòng nhập số thực");
+                    scannerPr.next();
+                }
+                DonGia = scannerPr.nextDouble();
+                scannerPr.nextLine();
+            } while (DonGia > 20000000 || DonGia < 10000);
+//        } catch (Exception e) {
+//            System.out.println("Đã xảy ra lỗi, vui lòng nhập lại");
+//        }
 
         System.out.println("Thuộc danh mục: ");
-        String ThuocDanhMuc = scannerPr.nextLine();
-
+        ThuocDanhMuc = scannerPr.nextLine();
     }
-
     // Create abstract methods
     public abstract void HienThiThongTin();
+
     public abstract void PhanTramGiamGia();
 
     // Getter

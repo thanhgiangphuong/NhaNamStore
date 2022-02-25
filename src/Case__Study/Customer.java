@@ -1,24 +1,31 @@
 package Case__Study;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Customer {
     // Create properties
     private String MaKhachHang;
     private String HoTen;
-    private double SoDienThoai;
+    private String SoDienThoai;
     private String Email;
-    private Date NgaySinh;
+    private String NgaySinh;
     private String LoaiKhachHang;
     private double TongTienMuaHang;
+
+    List<Customer> listCustomer = new ArrayList<Customer>();
+    Scanner scannerCtm = new Scanner(System.in);
+    FileUtils fileUtils = new FileUtils();
+    public static final String comma = ",";
 
     // No-arg Constructor
     public Customer() {
     }
 
     // Parameterized Constructor
-    public Customer(String maKhachHang, String hoTen, double soDienThoai, String email,
-                    Date ngaySinh, String loaiKhachHang, double tongTienMuaHang) {
+    public Customer(String maKhachHang, String hoTen, String soDienThoai, String email,
+                    String ngaySinh, String loaiKhachHang, double tongTienMuaHang) {
         MaKhachHang = maKhachHang;
         HoTen = hoTen;
         SoDienThoai = soDienThoai;
@@ -28,66 +35,71 @@ public class Customer {
         TongTienMuaHang = tongTienMuaHang;
     }
 
-    // Setter - Getter
+    public void inputBook() {
+        System.out.println("Mã khách hàng: ");
+        MaKhachHang = scannerCtm.nextLine();
 
-    public String getMaKhachHang() {
-        return MaKhachHang;
+        System.out.println("Họ tên: ");
+        HoTen = scannerCtm.nextLine();
+
+//        System.out.println("Số điện thoại: ");
+//        SoDienThoai = scannerCtm.nextLine();
+        boolean valid;
+        SoDienThoai = null;
+        do {
+            valid = true;
+            try {
+                System.out.println("Số điện thoại (Vui lòng nhập đủ 12 số): ");
+                SoDienThoai = scannerCtm.nextLine();
+                if (SoDienThoai.matches("[0]{1}[0-9]{11}")) {
+                    SoDienThoai = scannerCtm.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Không hợp lệ! Vui lòng nhập lại");
+                valid = false;
+            }
+        } while (!valid);
+
+        System.out.println("Email: ");
+        Email = scannerCtm.nextLine();
+
+        System.out.println("Ngày sinh: ");
+        NgaySinh = scannerCtm.nextLine();
+
+        System.out.println("Loại khách hàng: ");
+        LoaiKhachHang = scannerCtm.nextLine();
     }
 
-    public void setMaKhachHang(String maKhachHang) {
-        MaKhachHang = maKhachHang;
+    public void HienThiThongTinKhachHang() {
+
+    }
+
+    // Getter
+    public String getMaKhachHang() {
+        return MaKhachHang;
     }
 
     public String getHoTen() {
         return HoTen;
     }
 
-    public void setHoTen(String hoTen) {
-        HoTen = hoTen;
-    }
-
-    public double getSoDienThoai() {
+    public String getSoDienThoai() {
         return SoDienThoai;
-    }
-
-    public void setSoDienThoai(double soDienThoai) {
-        SoDienThoai = soDienThoai;
     }
 
     public String getEmail() {
         return Email;
     }
 
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return NgaySinh;
-    }
-
-    public void setNgaySinh(Date ngaySinh) {
-        NgaySinh = ngaySinh;
     }
 
     public String getLoaiKhachHang() {
         return LoaiKhachHang;
     }
 
-    public void setLoaiKhachHang(String loaiKhachHang) {
-        LoaiKhachHang = loaiKhachHang;
-    }
-
     public double getTongTienMuaHang() {
         return TongTienMuaHang;
-    }
-
-    public void setTongTienMuaHang(double tongTienMuaHang) {
-        TongTienMuaHang = tongTienMuaHang;
-    }
-
-
-    public void HienThiThongTinKhachHang(){
-
     }
 }

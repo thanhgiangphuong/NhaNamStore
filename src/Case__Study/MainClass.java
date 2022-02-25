@@ -9,6 +9,7 @@ public class MainClass {
         ChildrenToy childrenToy = new ChildrenToy();
         Scanner scanner = new Scanner(System.in);
         MainmenuControll mainmenuControll = new MainmenuControll();
+        FileUtils fileUtils = new FileUtils();
 
         // Task 3 - Create Files csv
 //        FileCreating("Book.csv");
@@ -23,10 +24,12 @@ public class MainClass {
             System.out.println("Application Manager Book Store");
             System.out.println("------------------------------");
             System.out.println("Enter 1: Thêm sản phẩm");
-            System.out.println("Enter 2: Hiển thị thông tin sản phẩm");
-            System.out.println("Enter 3: Tìm kiếm sản phẩm");
-            System.out.println("Enter 4: Trở về menu chính");
-            System.out.println("Enter 5: Thoát khỏi chương trình");
+            System.out.println("Enter 2: Thêm đơn hàng");
+            System.out.println("Enter 3: Hiển thị thông tin sản phẩm");
+            System.out.println("Enter 4: Hiển thị danh sách đơn hàng");
+            System.out.println("Enter 5: Tìm kiếm sản phẩm");
+            System.out.println("Enter 6: Trở về menu chính");
+            System.out.println("Enter 7: Thoát khỏi chương trình");
             String line = scanner.nextLine();
             switch (line) {
                 // Set sub menu - add product
@@ -34,12 +37,13 @@ public class MainClass {
                     System.out.println("Enter a: Thêm sách");
                     System.out.println("Enter b: Thêm đồ dùng học tập");
                     System.out.println("Enter c: Thêm đồ chơi trẻ em");
+                    System.out.println("Enter c: Thêm đồ chơi trẻ em");
+
                     String type = scanner.nextLine();
                     switch (type) {
                         case "a": {
                             book.inputBook();
                             book.addBook();
-
                             break;
                         }
                         case "b": {
@@ -59,6 +63,9 @@ public class MainClass {
                     break;
                 }
                 case "2": {
+                    break;
+                }
+                case "3": {
                     System.out.println("Enter a1: Hiển thị thông tin sách");
                     System.out.println("Enter b1: Hiển thị thông tin đồ dùng học tập");
                     System.out.println("Enter c1: Hiển thị thông tin đồ chơi trẻ em");
@@ -82,19 +89,29 @@ public class MainClass {
                     }
                     break;
                 }
-                case "3": {
-                    System.out.println("Nhập Mã sản phẩm để tìm kiếm: ");
-                    String prdID = scanner.nextLine();
-                    mainmenuControll.SearchProduct(prdID);
-
+                case "4": {
                     break;
                 }
-                case "4": {
+                case "5": {
+                    System.out.println("Enter a2: Tìm kiếm thông tin sản phẩm theo mã sản phẩm");
+                    System.out.println("Enter b2: Tìm kiếm thông tin đơn hàng theo mã khách hàng");
+                    String type2 = scanner.nextLine();
+                    switch (type2){
+                        case "a2": {
+                            mainmenuControll.SearchingandShow();
+                            break;
+                        }
+                        case "b2": {
+                            break;
+                        }
+                    }
+                }
+                case "6": {
                     System.out.println("Quay về menu chính");
                     continue;
                 }
-                case "5": {
-                    System.out.println("Thoát khỏi chương trình");
+                case "7": {
+                    System.out.println("Tạm biệt!");
                     return;
                 }
                 default:

@@ -55,19 +55,19 @@ public class SchoolThings extends Product {
 
             switch (MauSac) {
                 case "Xanh":
-                    System.out.println("Màu sắc: Xanh");
+                   // System.out.println("Màu sắc: Xanh");
                     break;
                 case "Đỏ":
-                    System.out.println("Màu sắc: Đỏ");
+                  //  System.out.println("Màu sắc: Đỏ");
                     break;
                 case "Vàng":
-                    System.out.println("Màu sắc: Vàng");
+                 //   System.out.println("Màu sắc: Vàng");
                     break;
                 case "Đen":
-                    System.out.println("Màu sắc: Đen");
+                 //   System.out.println("Màu sắc: Đen");
                     break;
                 case "Trắng":
-                    System.out.println("Màu sắc: Trắng");
+                //    System.out.println("Màu sắc: Trắng");
                     break;
                 default:
                     System.out.println("Vui lòng nhập lại, chỉ được nhập trong phạm vi (Xanh, Đỏ, Vàng, Đen, Trắng)");
