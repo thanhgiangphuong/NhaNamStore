@@ -18,7 +18,7 @@ public class MainClass {
 //        FileCreating("Customer.csv");
 //        FileCreating("Order.csv");
 
-        // Task 2
+        // Task 2 - 3
         // Set main menu
         while (true) {
             System.out.println("Application Manager Book Store");
@@ -37,8 +37,6 @@ public class MainClass {
                     System.out.println("Enter a: Thêm sách");
                     System.out.println("Enter b: Thêm đồ dùng học tập");
                     System.out.println("Enter c: Thêm đồ chơi trẻ em");
-                    System.out.println("Enter c: Thêm đồ chơi trẻ em");
-
                     String type = scanner.nextLine();
                     switch (type) {
                         case "a": {
@@ -104,11 +102,16 @@ public class MainClass {
                         case "b2": {
                             break;
                         }
+                        default:
+                            System.out.println("Truy vấn tìm kiếm không hợp lệ");
+                            continue;
                     }
+                    break;
                 }
                 case "6": {
                     System.out.println("Quay về menu chính");
                     continue;
+
                 }
                 case "7": {
                     System.out.println("Tạm biệt!");

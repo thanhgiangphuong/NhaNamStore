@@ -26,7 +26,7 @@ public class SchoolThings extends Product {
     // Parameterized Constructor
     public SchoolThings(String maSanPham, String tenSanPham, int soLuong, double donGia,
                         String thuocDanhMuc, String xuatXu, String thuongHieu, String nhaCungCap,
-                        String huongDanSuDung, String mauSac, String chatLieu, Double kichThuoc) {
+                        String huongDanSuDung, String mauSac, String chatLieu, double kichThuoc) {
         super(maSanPham, tenSanPham, soLuong, donGia, thuocDanhMuc);
         XuatXu = xuatXu;
         ThuongHieu = thuongHieu;
@@ -55,19 +55,14 @@ public class SchoolThings extends Product {
 
             switch (MauSac) {
                 case "Xanh":
-                   // System.out.println("Màu sắc: Xanh");
                     break;
                 case "Đỏ":
-                  //  System.out.println("Màu sắc: Đỏ");
                     break;
                 case "Vàng":
-                 //   System.out.println("Màu sắc: Vàng");
                     break;
                 case "Đen":
-                 //   System.out.println("Màu sắc: Đen");
                     break;
                 case "Trắng":
-                //    System.out.println("Màu sắc: Trắng");
                     break;
                 default:
                     System.out.println("Vui lòng nhập lại, chỉ được nhập trong phạm vi (Xanh, Đỏ, Vàng, Đen, Trắng)");
