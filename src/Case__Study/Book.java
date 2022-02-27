@@ -62,10 +62,10 @@ public class Book extends Product {
             valid = true;
             try {
                 System.out.println("Nhập ngày xuất bản theo định dạng dd/MM/yyyy");
-                String startDateString = scannerBook.nextLine();
+                String ngayXB  = scannerBook.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                NgayXuatBan = LocalDate.parse(startDateString, formatter).format(formatter2);
+                NgayXuatBan = LocalDate.parse(ngayXB, formatter).format(formatter2);
             } catch (Exception e) {
                 System.out.println("Không hợp lệ!");
                 valid = false;

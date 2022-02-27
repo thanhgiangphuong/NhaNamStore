@@ -7,6 +7,7 @@ public class MainClass {
         Book book = new Book();
         SchoolThings schoolThings = new SchoolThings();
         ChildrenToy childrenToy = new ChildrenToy();
+        Customer customer = new Customer();
         Scanner scanner = new Scanner(System.in);
         MainmenuControll mainmenuControll = new MainmenuControll();
         FileUtils fileUtils = new FileUtils();
@@ -34,22 +35,22 @@ public class MainClass {
             switch (line) {
                 // Set sub menu - add product
                 case "1": {
-                    System.out.println("Enter a: Thêm sách");
-                    System.out.println("Enter b: Thêm đồ dùng học tập");
-                    System.out.println("Enter c: Thêm đồ chơi trẻ em");
+                    System.out.println("Enter 1.1: Thêm sách");
+                    System.out.println("Enter 1.2: Thêm đồ dùng học tập");
+                    System.out.println("Enter 1.3: Thêm đồ chơi trẻ em");
                     String type = scanner.nextLine();
                     switch (type) {
-                        case "a": {
+                        case "1.1": {
                             book.inputBook();
                             book.addBook();
                             break;
                         }
-                        case "b": {
+                        case "1.2": {
                             schoolThings.inputSchoolThings();
                             schoolThings.addSchoolThings();
                             break;
                         }
-                        case "c": {
+                        case "1.3": {
                             childrenToy.inputChildrenToy();
                             childrenToy.addChildrentoy();
                             break;
@@ -61,23 +62,44 @@ public class MainClass {
                     break;
                 }
                 case "2": {
+                    System.out.println("Enter 2.1: Thêm thông tin khách hàng");
+                    System.out.println("Enter 2.2: Thêm thông tin đơn hàng");
+
+                    String type1 = scanner.nextLine();
+                    switch (type1){
+                        case "2.1": {
+                            customer.inputCustomer();
+                            break;
+                        }
+                        case "2.2": {
+                            break;
+                        }
+                    }
                     break;
                 }
                 case "3": {
-                    System.out.println("Enter a1: Hiển thị thông tin sách");
-                    System.out.println("Enter b1: Hiển thị thông tin đồ dùng học tập");
-                    System.out.println("Enter c1: Hiển thị thông tin đồ chơi trẻ em");
-                    String type1 = scanner.nextLine();
-                    switch (type1) {
-                        case "a1": {
+                    System.out.println("Enter 3.1: Hiển thị tất cả sản phẩm sách");
+                    System.out.println("Enter 3.2: Hiển thị tất cả sản phẩm đồ dùng học tập");
+                    System.out.println("Enter 3.3: Hiển thị tất cả sản phẩm đồ chơi trẻ em");
+                    System.out.println("Enter 3.4: Hiển thị tất cả tất cả sản phẩm trong nhà sách");
+
+                    String type2 = scanner.nextLine();
+                    switch (type2) {
+                        case "3.1": {
                             book.HienThiThongTin();
                             break;
                         }
-                        case "b1": {
+                        case "3.2": {
                             schoolThings.HienThiThongTin();
                             break;
                         }
-                        case "c1": {
+                        case "3.3": {
+                            childrenToy.HienThiThongTin();
+                            break;
+                        }
+                        case "3.4": {
+                            book.HienThiThongTin();
+                            schoolThings.HienThiThongTin();
                             childrenToy.HienThiThongTin();
                             break;
                         }
@@ -91,15 +113,15 @@ public class MainClass {
                     break;
                 }
                 case "5": {
-                    System.out.println("Enter a2: Tìm kiếm thông tin sản phẩm theo mã sản phẩm");
-                    System.out.println("Enter b2: Tìm kiếm thông tin đơn hàng theo mã khách hàng");
+                    System.out.println("Enter 5.1: Tìm kiếm thông tin sản phẩm theo mã sản phẩm");
+                    System.out.println("Enter 5.2: Tìm kiếm thông tin đơn hàng theo mã khách hàng");
                     String type2 = scanner.nextLine();
                     switch (type2){
-                        case "a2": {
+                        case "5.1": {
                             mainmenuControll.SearchingandShow();
                             break;
                         }
-                        case "b2": {
+                        case "5.2": {
                             break;
                         }
                         default:
