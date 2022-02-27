@@ -41,7 +41,7 @@ public class ChildrenToy extends Product {
         System.out.println("Hướng dẫn sử dụng: ");
         dcHuongDanSuDung = scannerToy.nextLine();
 
-        ChildrenToy childrenToy = new ChildrenToy (getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(),
+        ChildrenToy childrenToy = new ChildrenToy(getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(),
                 getThuocDanhMuc(), getDcXuatXu(), getDcThuongHieu(), getDcNhaCungCap(), getDcHuongDanSuDung());
         listChildrenToy.add(childrenToy);
     }
@@ -67,6 +67,7 @@ public class ChildrenToy extends Product {
     public void PhanTramGiamGia() {
 
     }
+
     // Getter
     public String getDcXuatXu() {
         return dcXuatXu;

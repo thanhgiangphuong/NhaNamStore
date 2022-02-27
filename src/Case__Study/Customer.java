@@ -1,13 +1,12 @@
 package Case__Study;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Customer {
     // Create properties
@@ -17,7 +16,7 @@ public class Customer {
     private String Email;
     private String NgaySinh;
     private String LoaiKhachHang;
-    private double TongTienMuaHang;
+    //  private double TongTienMuaHang;
 
     List<Customer> listCustomer = new ArrayList<Customer>();
     Scanner scannerCtm = new Scanner(System.in);
@@ -30,16 +29,17 @@ public class Customer {
 
     // Parameterized Constructor
     public Customer(String maKhachHang, String hoTen, String soDienThoai, String email,
-                    String ngaySinh, String loaiKhachHang, double tongTienMuaHang) {
+                    String ngaySinh, String loaiKhachHang) {
         MaKhachHang = maKhachHang;
         HoTen = hoTen;
         SoDienThoai = soDienThoai;
         Email = email;
         NgaySinh = ngaySinh;
         LoaiKhachHang = loaiKhachHang;
-        TongTienMuaHang = tongTienMuaHang;
+        //    TongTienMuaHang = tongTienMuaHang;
     }
 
+    //Create input customer from keyboard method
     public void inputCustomer() {
         System.out.println("Mã khách hàng: ");
         MaKhachHang = scannerCtm.nextLine();
@@ -51,11 +51,11 @@ public class Customer {
         boolean validSDT;
         System.out.println("Số điện thoại (Vui lòng nhập đủ 12 số): ");
         do {
-                SoDienThoai = scannerCtm.nextLine();
-                validSDT = SoDienThoai.matches("^\\d{12}$");
-                if(!validSDT){
-                    System.out.println("Không hợp lệ, vui lòng nhập lại");
-                }
+            SoDienThoai = scannerCtm.nextLine();
+            validSDT = SoDienThoai.matches("^\\d{12}$");
+            if (!validSDT) {
+                System.out.println("Không hợp lệ, vui lòng nhập lại");
+            }
         } while (!validSDT);
 
         // Validate Email
@@ -64,9 +64,9 @@ public class Customer {
         do {
             Email = scannerCtm.nextLine();
             validEmail = Email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
-                if (!validEmail) {
-                    System.out.println("Nhập sai Email, vui lòng nhập lại");
-                }
+            if (!validEmail) {
+                System.out.println("Nhập sai Email, vui lòng nhập lại");
+            }
         } while (!validEmail);
 
         // Validate Date of Birth
@@ -74,29 +74,36 @@ public class Customer {
         NgaySinh = null;
         do {
             validBD = true;
-         //   try {
+            try {
                 System.out.println("Nhập ngày sinh theo đúng định dang dd/mm/yyyy và lớn hơn 16 tuổi: ");
                 String ngaysinh = scannerCtm.nextLine();
-                String[] split = ngaysinh.split("/");
+                // Get current year
                 Date currentDate = new Date();
-                int currentYear = currentDate.getYear();
+                ZoneId timeZone = ZoneId.systemDefault();
+                LocalDate getLocalDate = currentDate.toInstant().atZone(timeZone).toLocalDate();
+                int currentYear = getLocalDate.getYear();
+
+                // Validate age greater than 16
+                int year = 0;
                 try {
-                    int year = Integer.parseInt(split[2]);
-                    int age = currentYear - year;
-                    if (age < 16) {
-                        System.out.println("Nhỏ hơn 16 tuổi, không được phép mua hàng");
-                    }
+                    String[] split = ngaysinh.split("/");
+                    year = Integer.parseInt(split[2]);
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
+                int age = currentYear - year;
+                if (age < 16) {
+                    throw new Exception("Nhỏ hơn 16 tuổi, không được phép mua hàng");
+                }
+                // Validate format of date "dd/mm/yyyy
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 NgaySinh = LocalDate.parse(ngaysinh, formatter).format(formatter2);
-//            } catch (Exception e) {
-//                System.out.println("Ngày sinh không hợp lệ, vui lòng nhập lại");
-//                validBD = false;
-//            }
-        } while (validBD);
+            } catch (Exception e) {
+                System.out.println("Ngày sinh không hợp lệ, vui lòng nhập lại");
+                validBD = false;
+            }
+        } while (!validBD);
 
         // Validate Customer type
         System.out.println("Loại khách hàng (Thường, VIP1, VIP2): ");
@@ -109,7 +116,21 @@ public class Customer {
             }
             default:
                 LoaiKhachHang = "Thường";
+                System.out.println(LoaiKhachHang);
                 break;
+        }
+        Customer customer = new Customer(getMaKhachHang(), getHoTen(), getSoDienThoai(),
+                getEmail(), getNgaySinh(), getLoaiKhachHang());
+        listCustomer.add(customer);
+    }
+
+    // Create Add customer into file csv method
+    public void addCustomer() {
+        String line = null;
+        for (Customer customer : listCustomer) {
+            line = customer.getMaKhachHang() + comma + getHoTen() + comma + getSoDienThoai()
+                    + comma + getEmail() + comma + getNgaySinh() + comma + getLoaiKhachHang();
+            fileUtils.FileWriting("Customer.csv", line);
         }
     }
 
@@ -142,7 +163,7 @@ public class Customer {
         return LoaiKhachHang;
     }
 
-    public double getTongTienMuaHang() {
-        return TongTienMuaHang;
-    }
+//    public double getTongTienMuaHang() {
+//        return TongTienMuaHang;
+//    }
 }

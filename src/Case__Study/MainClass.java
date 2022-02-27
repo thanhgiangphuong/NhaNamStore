@@ -66,14 +66,18 @@ public class MainClass {
                     System.out.println("Enter 2.2: Thêm thông tin đơn hàng");
 
                     String type1 = scanner.nextLine();
-                    switch (type1){
+                    switch (type1) {
                         case "2.1": {
                             customer.inputCustomer();
+                            customer.addCustomer();
                             break;
                         }
                         case "2.2": {
                             break;
                         }
+                        default:
+                            System.out.println("Truy vấn thêm khách hàng và đơn hàng không hợp lệ");
+                            break;
                     }
                     break;
                 }
@@ -116,7 +120,7 @@ public class MainClass {
                     System.out.println("Enter 5.1: Tìm kiếm thông tin sản phẩm theo mã sản phẩm");
                     System.out.println("Enter 5.2: Tìm kiếm thông tin đơn hàng theo mã khách hàng");
                     String type2 = scanner.nextLine();
-                    switch (type2){
+                    switch (type2) {
                         case "5.1": {
                             mainmenuControll.SearchingandShow();
                             break;

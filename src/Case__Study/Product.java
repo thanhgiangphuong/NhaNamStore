@@ -45,16 +45,16 @@ public abstract class Product {
         } while (SoLuong <= 0);
 
         // Validate "Đơn giá"
-       // try {
-            do {
-                System.out.println("Đơn giá (Vui lòng điền số lớn hơn 10000 và nhỏ hơn 20000000): ");
-                while (!scannerPr.hasNextDouble()) {
-                    System.out.println("Vui lòng nhập số thực");
-                    scannerPr.next();
-                }
-                DonGia = scannerPr.nextDouble();
-                scannerPr.nextLine();
-            } while (DonGia > 20000000 || DonGia < 10000);
+        // try {
+        do {
+            System.out.println("Đơn giá (Vui lòng điền số lớn hơn 10000 và nhỏ hơn 20000000): ");
+            while (!scannerPr.hasNextDouble()) {
+                System.out.println("Vui lòng nhập số thực");
+                scannerPr.next();
+            }
+            DonGia = scannerPr.nextDouble();
+            scannerPr.nextLine();
+        } while (DonGia > 20000000 || DonGia < 10000);
 //        } catch (Exception e) {
 //            System.out.println("Đã xảy ra lỗi, vui lòng nhập lại");
 //        }
@@ -62,6 +62,7 @@ public abstract class Product {
         System.out.println("Thuộc danh mục: ");
         ThuocDanhMuc = scannerPr.nextLine();
     }
+
     // Create abstract methods
     public abstract void HienThiThongTin();
 
@@ -87,6 +88,4 @@ public abstract class Product {
     public String getThuocDanhMuc() {
         return ThuocDanhMuc;
     }
-
-
 }

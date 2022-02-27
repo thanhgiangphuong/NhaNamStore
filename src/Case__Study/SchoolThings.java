@@ -36,6 +36,8 @@ public class SchoolThings extends Product {
         ChatLieu = chatLieu;
         KichThuoc = kichThuoc;
     }
+
+    // Create input schoolthings from keyboard
     public void inputSchoolThings() {
         inputProduct();
         System.out.println("Xuất xứ: ");
@@ -90,16 +92,17 @@ public class SchoolThings extends Product {
                 getHuongDanSuDung(), getMauSac(), getChatLieu(), getKichThuoc());
         listSchoolThings.add(schoolThings);
     }
-    // Create addBook method to add information of book to file
+
+    // Create add Schoolthings method to add information to file
     public void addSchoolThings() {
         String line = null;
         for (SchoolThings schoolThings : listSchoolThings) {
             line = schoolThings.getMaSanPham() + comma + schoolThings.getTenSanPham()
-                    + comma+ schoolThings.getSoLuong() + comma + schoolThings.getDonGia()
+                    + comma + schoolThings.getSoLuong() + comma + schoolThings.getDonGia()
                     + comma + schoolThings.getThuocDanhMuc() + comma + schoolThings.getXuatXu()
                     + comma + schoolThings.getThuongHieu() + comma + schoolThings.getNhaCungCap()
                     + comma + schoolThings.getHuongDanSuDung() + comma + getMauSac()
-                    + comma + getChatLieu() + comma +getKichThuoc();
+                    + comma + getChatLieu() + comma + getKichThuoc();
 
             fileUtils.FileWriting("SchoolThings.csv", line);
         }
@@ -114,6 +117,7 @@ public class SchoolThings extends Product {
     public void PhanTramGiamGia() {
 
     }
+
     // Getter
     public String getXuatXu() {
         return XuatXu;

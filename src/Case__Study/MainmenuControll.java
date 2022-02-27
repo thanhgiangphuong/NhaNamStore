@@ -13,8 +13,8 @@ public class MainmenuControll {
         String ProductID = scn.nextLine();
         // Create a list to get the book information from file
         try {
+            // Find in Book file
             Boolean notExistBooks = false;
-
             List<String> listBook = FileUtils.FileReader("Book.csv");
             // Use for loop to iterate over the elements
             for (int i = 0; i < listBook.size(); i++) {
@@ -35,6 +35,8 @@ public class MainmenuControll {
                     notExistBooks = true;
                 }
             }
+
+            // Find in School things file
             Boolean notExistThings = false;
             List<String> listThings = FileUtils.FileReader("SchoolThings.csv");
             for (int j = 0; j < listThings.size(); j++) {
@@ -57,8 +59,8 @@ public class MainmenuControll {
                 }
             }
 
+            // Find in Children toy file
             Boolean notExistToys = false;
-
             List<String> listToy = FileUtils.FileReader("ChildrenToy.csv");
             for (int f = 0; f < listToy.size(); f++) {
                 String[] splLine2 = listToy.get(f).split(",");
@@ -79,6 +81,7 @@ public class MainmenuControll {
                 }
             }
 
+            // throw error if not found
             if (notExistToys && notExistBooks && notExistThings) {
                 System.out.println("Sản phẩm này không tồn tại");
             }

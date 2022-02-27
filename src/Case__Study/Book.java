@@ -36,6 +36,7 @@ public class Book extends Product {
         LanTaiBan = lanTaiBan;
     }
 
+    // Create input book method from keyboard
     public void inputBook() {
         inputProduct();
         System.out.println("Nhà xuất bản: ");
@@ -62,7 +63,7 @@ public class Book extends Product {
             valid = true;
             try {
                 System.out.println("Nhập ngày xuất bản theo định dạng dd/MM/yyyy");
-                String ngayXB  = scannerBook.nextLine();
+                String ngayXB = scannerBook.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 NgayXuatBan = LocalDate.parse(ngayXB, formatter).format(formatter2);
