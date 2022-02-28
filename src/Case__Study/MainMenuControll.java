@@ -62,6 +62,7 @@ public class MainMenuControll {
                     }
                     break;
                 }
+                // Set sub menu - add customer/order
                 case "2": {
                     System.out.println("Enter 2.1: Thêm thông tin khách hàng");
                     System.out.println("Enter 2.2: Thêm thông tin đơn hàng");
@@ -82,6 +83,7 @@ public class MainMenuControll {
                     }
                     break;
                 }
+                // Set sub menu - show product
                 case "3": {
                     System.out.println("Enter 3.1: Hiển thị tất cả sản phẩm sách");
                     System.out.println("Enter 3.2: Hiển thị tất cả sản phẩm đồ dùng học tập");
@@ -117,6 +119,7 @@ public class MainMenuControll {
                 case "4": {
                     break;
                 }
+                // Set sub menu - Searching
                 case "5": {
                     System.out.println("Enter 5.1: Tìm kiếm thông tin sản phẩm theo mã sản phẩm");
                     System.out.println("Enter 5.2: Tìm kiếm thông tin đơn hàng theo mã khách hàng");

@@ -2,13 +2,12 @@ package Case__Study;
 
 import java.util.Scanner;
 
-public abstract class Product {
+public abstract class Product extends Category {
     // Create properties
     private String MaSanPham;
     private String TenSanPham;
     private int SoLuong;
     private double DonGia;
-    private String ThuocDanhMuc;
 
     Scanner scannerPr = new Scanner(System.in);
     FileUtils fileUtils = new FileUtils();
@@ -18,12 +17,11 @@ public abstract class Product {
     }
 
     // Parameterized Constructor
-    public Product(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc ) {
+    public Product(String maSanPham, String tenSanPham, int soLuong, double donGia) {
         MaSanPham = maSanPham;
         TenSanPham = tenSanPham;
         SoLuong = soLuong;
         DonGia = donGia;
-        ThuocDanhMuc = thuocDanhMuc;
     }
 
     // Create input information of product method
@@ -54,9 +52,6 @@ public abstract class Product {
             DonGia = scannerPr.nextDouble();
             scannerPr.nextLine();
         } while (DonGia > 20000000 || DonGia < 10000);
-
-        System.out.println("Thuộc danh mục: ");
-        ThuocDanhMuc = scannerPr.nextLine();
     }
 
     // Create abstract methods
@@ -79,9 +74,5 @@ public abstract class Product {
 
     public double getDonGia() {
         return DonGia;
-    }
-
-    public String getThuocDanhMuc() {
-        return ThuocDanhMuc;
     }
 }

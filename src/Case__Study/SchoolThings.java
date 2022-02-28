@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class SchoolThings extends Product {
     // Create properties
+    String ThuocDanhMuc = getDanhMucDoDung();
     private String XuatXu;
     private String ThuongHieu;
     private String NhaCungCap;
@@ -17,6 +18,7 @@ public class SchoolThings extends Product {
     List<SchoolThings> listSchoolThings = new ArrayList<SchoolThings>();
     Scanner scannerThings = new Scanner(System.in);
     FileUtils fileUtils = new FileUtils();
+    Category category = new Category();
     public static final String comma = ",";
 
     // No-arg Constructor
@@ -24,10 +26,11 @@ public class SchoolThings extends Product {
     }
 
     // Parameterized Constructor
-    public SchoolThings(String maSanPham, String tenSanPham, int soLuong, double donGia,
-                        String thuocDanhMuc, String xuatXu, String thuongHieu, String nhaCungCap,
-                        String huongDanSuDung, String mauSac, String chatLieu, double kichThuoc) {
-        super(maSanPham, tenSanPham, soLuong, donGia, thuocDanhMuc);
+    public SchoolThings(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc,
+                        String xuatXu, String thuongHieu, String nhaCungCap, String huongDanSuDung, String mauSac,
+                        String chatLieu, Double kichThuoc) {
+        super(maSanPham, tenSanPham, soLuong, donGia);
+        ThuocDanhMuc = thuocDanhMuc;
         XuatXu = xuatXu;
         ThuongHieu = thuongHieu;
         NhaCungCap = nhaCungCap;
@@ -40,6 +43,8 @@ public class SchoolThings extends Product {
     // Create input schoolthings from keyboard
     public void inputSchoolThings() {
         inputProduct();
+        category.inputThingsCategory();
+
         System.out.println("Xuất xứ: ");
         XuatXu = scannerThings.nextLine();
         System.out.println("Thương hiệu: ");
@@ -50,7 +55,7 @@ public class SchoolThings extends Product {
         HuongDanSuDung = scannerThings.nextLine();
 
         // Validate "Màu sắc"
-        System.out.println("Màu sắc: ");
+        System.out.println("Màu sắc (Chỉ được nhập trong phạm vi (Xanh, Đỏ, Vàng, Đen, Trắng): ");
         MauSac = scannerThings.nextLine();
         boolean validColor;
         do {
@@ -67,7 +72,7 @@ public class SchoolThings extends Product {
                 case "Trắng":
                     break;
                 default:
-                    System.out.println("Vui lòng nhập lại, chỉ được nhập trong phạm vi (Xanh, Đỏ, Vàng, Đen, Trắng)");
+                    System.out.println("Vui lòng nhập lại!)");
                     MauSac = scannerThings.nextLine();
                     validColor = false;
                     break;
@@ -89,7 +94,7 @@ public class SchoolThings extends Product {
 
         // Create object to add SchoolThings into list SchoolThings
         SchoolThings schoolThings = new SchoolThings(getMaSanPham(), getTenSanPham(), getSoLuong(),
-                getDonGia(), getThuocDanhMuc(), getXuatXu(), getThuongHieu(), getNhaCungCap(),
+                getDonGia(), getDanhMucDoDung(), getXuatXu(), getThuongHieu(), getNhaCungCap(),
                 getHuongDanSuDung(), getMauSac(), getChatLieu(), getKichThuoc());
         listSchoolThings.add(schoolThings);
     }
@@ -100,7 +105,7 @@ public class SchoolThings extends Product {
         for (SchoolThings schoolThings : listSchoolThings) {
             line = schoolThings.getMaSanPham() + comma + schoolThings.getTenSanPham()
                     + comma + schoolThings.getSoLuong() + comma + schoolThings.getDonGia()
-                    + comma + schoolThings.getThuocDanhMuc() + comma + schoolThings.getXuatXu()
+                    + comma + schoolThings.getDanhMucDoDung() + comma + schoolThings.getXuatXu()
                     + comma + schoolThings.getThuongHieu() + comma + schoolThings.getNhaCungCap()
                     + comma + schoolThings.getHuongDanSuDung() + comma + getMauSac()
                     + comma + getChatLieu() + comma + getKichThuoc();

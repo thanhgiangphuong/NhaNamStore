@@ -70,7 +70,7 @@ public class Category {
     }
 
     // Create inputDanhMucBook method
-    public void inputBookCategory(){
+    public void inputBookCategory() {
         System.out.println("Nhập danh mục sách (Văn Học, Khoa học, Chính trị, Tôn Giáo, Thiếu nhi): ");
         DanhMucBook = scannerCategory.nextLine();
         boolean validCategoryBook;
@@ -97,7 +97,7 @@ public class Category {
     }
 
     // Create inputThingsCategory method
-    public void inputThingsCategory(){
+    public void inputThingsCategory() {
         System.out.println("Nhập danh mục Đồ dùng học tập (Tiểu học, Trung học, Phổ thông): ");
         DanhMucDoDung = scannerCategory.nextLine();
         boolean validCategoryThings;
@@ -120,7 +120,7 @@ public class Category {
     }
 
     // Create inputToyCategory method
-    public void inputToyCategory(){
+    public void inputToyCategory() {
         System.out.println("Nhập danh mục Đồ dùng học tập (Tiểu học, Trung học, Phổ thông): ");
         DanhMucDoChoi = scannerCategory.nextLine();
         boolean validCategoryToy;

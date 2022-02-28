@@ -28,7 +28,7 @@ public class GeneralMethod {
                 if (book.getMaSanPham().equals(ProductID)) {
                     System.out.println("Đây là sản phẩm sách: ");
                     System.out.println(book.getMaSanPham() + comma + book.getTenSanPham() + comma
-                            + book.getSoLuong() + comma + book.getDonGia() + comma + book.getThuocDanhMuc() + comma
+                            + book.getSoLuong() + comma + book.getDonGia() + comma + book.getDanhMucBook() + comma
                             + book.getNhaXuatBan() + comma + book.getNamXuatBan() + comma
                             + book.getNgayXuatBan() + comma + book.getLanTaiBan());
                 } else {
@@ -50,7 +50,7 @@ public class GeneralMethod {
                     System.out.println("Đây là sản phẩm đồ dùng học tập: ");
                     System.out.println(schoolThings.getMaSanPham() + comma + schoolThings.getTenSanPham()
                             + comma + schoolThings.getSoLuong() + comma + schoolThings.getDonGia()
-                            + comma + schoolThings.getThuocDanhMuc() + comma + schoolThings.getXuatXu()
+                            + comma + schoolThings.getDanhMucDoDung() + comma + schoolThings.getXuatXu()
                             + comma + schoolThings.getThuongHieu() + comma + schoolThings.getNhaCungCap()
                             + comma + schoolThings.getHuongDanSuDung() + comma + schoolThings.getMauSac()
                             + comma + schoolThings.getChatLieu() + comma + schoolThings.getKichThuoc());
@@ -73,7 +73,7 @@ public class GeneralMethod {
                     System.out.println("Đây là sản phẩm đồ chơi trẻ em");
                     System.out.println(childrenToy.getMaSanPham() + comma + childrenToy.getTenSanPham()
                             + comma + childrenToy.getSoLuong() + comma + childrenToy.getDonGia()
-                            + comma + childrenToy.getThuocDanhMuc() + comma + childrenToy.getDcXuatXu()
+                            + comma + childrenToy.getDanhMucDoChoi() + comma + childrenToy.getDcXuatXu()
                             + comma + childrenToy.getDcThuongHieu() + comma + childrenToy.getDcNhaCungCap()
                             + comma + childrenToy.getDcHuongDanSuDung());
                 } else {
@@ -82,7 +82,7 @@ public class GeneralMethod {
             }
 
             // throw error if not found
-            if (notExistToys && notExistBooks && notExistThings) {
+            if (!notExistToys && !notExistBooks && !notExistThings) {
                 System.out.println("Sản phẩm này không tồn tại");
             }
 

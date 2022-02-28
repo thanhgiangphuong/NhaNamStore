@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Book extends Product {
     // Create properties
+    String ThuocDanhMuc = getDanhMucBook();
     private String NhaXuatBan;
     private int NamXuatBan;
     private String TacGia;
@@ -17,6 +18,7 @@ public class Book extends Product {
     List<Book> listBook = new ArrayList<Book>();
     Scanner scannerBook = new Scanner(System.in);
     FileUtils fileUtils = new FileUtils();
+    Category category = new Category();
     public static final String comma = ",";
 
     // No-arg Constructor
@@ -27,7 +29,8 @@ public class Book extends Product {
     // Parameterized Constructor
     public Book(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc,
                 String nhaXuatBan, int namXuatBan, String tacGia, String ngayXuatBan, int lanTaiBan) {
-        super(maSanPham, tenSanPham, soLuong, donGia, thuocDanhMuc);
+        super(maSanPham, tenSanPham, soLuong, donGia);
+        ThuocDanhMuc = thuocDanhMuc;
         NhaXuatBan = nhaXuatBan;
         NamXuatBan = namXuatBan;
         TacGia = tacGia;
@@ -38,6 +41,8 @@ public class Book extends Product {
     // Create input book method from keyboard
     public void inputBook() {
         inputProduct();
+        category.inputBookCategory();
+
         System.out.println("Nhà xuất bản: ");
         NhaXuatBan = scannerBook.nextLine();
 
@@ -95,7 +100,7 @@ public class Book extends Product {
         } while (LanTaiBan <= 0);
 
         // Create object to add book into list book
-        Book book = new Book(getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(), getThuocDanhMuc(),
+        Book book = new Book(getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(), getDanhMucBook(),
                 getNhaXuatBan(), getNamXuatBan(), getTacGia(), getNgayXuatBan(), getLanTaiBan());
         listBook.add(book);
     }
@@ -105,7 +110,7 @@ public class Book extends Product {
         String line = null;
         for (Book book : listBook) {
             line = book.getMaSanPham() + comma + book.getTenSanPham() + comma + book.getSoLuong()
-                    + comma + book.getDonGia() + comma + book.getThuocDanhMuc() + comma + book.getNhaXuatBan()
+                    + comma + book.getDonGia() + comma + book.getDanhMucBook() + comma + book.getNhaXuatBan()
                     + comma + book.getNamXuatBan() + comma + book.getTacGia() + comma + book.getNgayXuatBan()
                     + comma + book.getLanTaiBan();
             fileUtils.FileWriting("Book.csv", line);
