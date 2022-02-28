@@ -18,7 +18,7 @@ public abstract class Product {
     }
 
     // Parameterized Constructor
-    public Product(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc) {
+    public Product(String maSanPham, String tenSanPham, int soLuong, double donGia, String thuocDanhMuc ) {
         MaSanPham = maSanPham;
         TenSanPham = tenSanPham;
         SoLuong = soLuong;
@@ -45,7 +45,6 @@ public abstract class Product {
         } while (SoLuong <= 0);
 
         // Validate "Đơn giá"
-        // try {
         do {
             System.out.println("Đơn giá (Vui lòng điền số lớn hơn 10000 và nhỏ hơn 20000000): ");
             while (!scannerPr.hasNextDouble()) {
@@ -55,9 +54,6 @@ public abstract class Product {
             DonGia = scannerPr.nextDouble();
             scannerPr.nextLine();
         } while (DonGia > 20000000 || DonGia < 10000);
-//        } catch (Exception e) {
-//            System.out.println("Đã xảy ra lỗi, vui lòng nhập lại");
-//        }
 
         System.out.println("Thuộc danh mục: ");
         ThuocDanhMuc = scannerPr.nextLine();

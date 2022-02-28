@@ -2,14 +2,15 @@ package Case__Study;
 
 import java.util.Scanner;
 
-public class MainClass {
+public class MainMenuControll {
     public static void main(String[] args) {
         Book book = new Book();
         SchoolThings schoolThings = new SchoolThings();
         ChildrenToy childrenToy = new ChildrenToy();
         Customer customer = new Customer();
+        Category category = new Category();
         Scanner scanner = new Scanner(System.in);
-        MainmenuControll mainmenuControll = new MainmenuControll();
+        GeneralMethod generalMethod = new GeneralMethod();
         FileUtils fileUtils = new FileUtils();
 
         // Task 3 - Create Files csv
@@ -27,7 +28,7 @@ public class MainClass {
             System.out.println("Enter 1: Thêm sản phẩm");
             System.out.println("Enter 2: Thêm đơn hàng");
             System.out.println("Enter 3: Hiển thị thông tin sản phẩm");
-            System.out.println("Enter 4: Hiển thị danh sách đơn hàng");
+            System.out.println("Enter 4: Hiển thị đơn hàng");
             System.out.println("Enter 5: Tìm kiếm sản phẩm");
             System.out.println("Enter 6: Trở về menu chính");
             System.out.println("Enter 7: Thoát khỏi chương trình");
@@ -122,7 +123,7 @@ public class MainClass {
                     String type2 = scanner.nextLine();
                     switch (type2) {
                         case "5.1": {
-                            mainmenuControll.SearchingandShow();
+                            generalMethod.SearchingandShow();
                             break;
                         }
                         case "5.2": {

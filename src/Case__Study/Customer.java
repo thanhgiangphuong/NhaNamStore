@@ -16,7 +16,7 @@ public class Customer {
     private String Email;
     private String NgaySinh;
     private String LoaiKhachHang;
-    //  private double TongTienMuaHang;
+    // private double TongTienMuaHang;
 
     List<Customer> listCustomer = new ArrayList<Customer>();
     Scanner scannerCtm = new Scanner(System.in);
@@ -36,7 +36,7 @@ public class Customer {
         Email = email;
         NgaySinh = ngaySinh;
         LoaiKhachHang = loaiKhachHang;
-        //    TongTienMuaHang = tongTienMuaHang;
+        //TongTienMuaHang = tongTienMuaHang;
     }
 
     //Create input customer from keyboard method
@@ -97,8 +97,7 @@ public class Customer {
                 }
                 // Validate format of date "dd/mm/yyyy
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                NgaySinh = LocalDate.parse(ngaysinh, formatter).format(formatter2);
+                NgaySinh = LocalDate.parse(ngaysinh, formatter).format(formatter);
             } catch (Exception e) {
                 System.out.println("Ngày sinh không hợp lệ, vui lòng nhập lại");
                 validBD = false;
@@ -135,7 +134,6 @@ public class Customer {
     }
 
     public void HienThiThongTinKhachHang() {
-
     }
 
     // Getter

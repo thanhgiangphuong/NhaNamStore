@@ -41,6 +41,7 @@ public class ChildrenToy extends Product {
         System.out.println("Hướng dẫn sử dụng: ");
         dcHuongDanSuDung = scannerToy.nextLine();
 
+        // Create object to add ChildrenToy into list ChildrenToy
         ChildrenToy childrenToy = new ChildrenToy(getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(),
                 getThuocDanhMuc(), getDcXuatXu(), getDcThuongHieu(), getDcNhaCungCap(), getDcHuongDanSuDung());
         listChildrenToy.add(childrenToy);

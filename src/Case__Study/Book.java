@@ -1,6 +1,5 @@
 package Case__Study;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -62,11 +61,23 @@ public class Book extends Product {
         do {
             valid = true;
             try {
-                System.out.println("Nhập ngày xuất bản theo định dạng dd/MM/yyyy");
+                System.out.println("Nhập ngày xuất bản theo định dạng dd/MM/yyyy" +
+                        " và có năm trùng với năm xuất bản đã nhập: ");
                 String ngayXB = scannerBook.nextLine();
+                // Valide year is the same as NhaXuatBan
+                int year = 0;
+                try {
+                    String[] splitYear = ngayXB.split("/");
+                    year = Integer.parseInt(splitYear[2]);
+                } catch (NumberFormatException ex) {
+                    ex.printStackTrace();
+                }
+                if (year != NamXuatBan) {
+                    throw new Exception("Không giống năm xuất bản đã nhập");
+                }
+                // Set format of date (dd/MM/yyyy)
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                NgayXuatBan = LocalDate.parse(ngayXB, formatter).format(formatter2);
+                NgayXuatBan = LocalDate.parse(ngayXB, formatter).format(formatter);
             } catch (Exception e) {
                 System.out.println("Không hợp lệ!");
                 valid = false;
@@ -82,6 +93,8 @@ public class Book extends Product {
             }
             LanTaiBan = scannerBook.nextInt();
         } while (LanTaiBan <= 0);
+
+        // Create object to add book into list book
         Book book = new Book(getMaSanPham(), getTenSanPham(), getSoLuong(), getDonGia(), getThuocDanhMuc(),
                 getNhaXuatBan(), getNamXuatBan(), getTacGia(), getNgayXuatBan(), getLanTaiBan());
         listBook.add(book);
@@ -128,14 +141,6 @@ public class Book extends Product {
 
     public int getLanTaiBan() {
         return LanTaiBan;
-    }
-
-    public List<Book> getListBook() {
-        return listBook;
-    }
-
-    public Scanner getScannerBook() {
-        return scannerBook;
     }
 
 }

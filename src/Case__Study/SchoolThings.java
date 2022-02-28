@@ -48,13 +48,13 @@ public class SchoolThings extends Product {
         NhaCungCap = scannerThings.nextLine();
         System.out.println("Hướng dẫn sử dụng: ");
         HuongDanSuDung = scannerThings.nextLine();
+
         // Validate "Màu sắc"
         System.out.println("Màu sắc: ");
         MauSac = scannerThings.nextLine();
         boolean validColor;
         do {
             validColor = true;
-
             switch (MauSac) {
                 case "Xanh":
                     break;
@@ -87,6 +87,7 @@ public class SchoolThings extends Product {
             KichThuoc = scannerThings.nextDouble();
         } while (KichThuoc <= 0);
 
+        // Create object to add SchoolThings into list SchoolThings
         SchoolThings schoolThings = new SchoolThings(getMaSanPham(), getTenSanPham(), getSoLuong(),
                 getDonGia(), getThuocDanhMuc(), getXuatXu(), getThuongHieu(), getNhaCungCap(),
                 getHuongDanSuDung(), getMauSac(), getChatLieu(), getKichThuoc());

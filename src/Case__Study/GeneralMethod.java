@@ -3,13 +3,13 @@ package Case__Study;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainmenuControll {
+public class GeneralMethod {
 
     public static final String comma = ",";
 
     public static void SearchingandShow() {
         Scanner scn = new Scanner(System.in);
-        System.out.println("Nhập Mã sản phẩm để tìm kiếm: ");
+        System.out.println("Nhập Mã Sản Phẩm để tìm kiếm: ");
         String ProductID = scn.nextLine();
         // Create a list to get the book information from file
         try {
